@@ -1,6 +1,6 @@
 // src/controllers/notesController.js
 import createHttpError from 'http-errors';
-import { Note } from '../models/note.js';
+import { Note } from '../models/Note.js';
 
 export const getAllNotes = async (req, res) => {
   const notes = await Note.find();
@@ -50,7 +50,7 @@ export const deleteNote = async (req, res, next) => {
 export const updateNote = async (req, res, next) => {
   const { noteId } = req.params;
   const note = await Note.findByIdAndUpdate(noteId, req.body, {
-    new: true,
+    returnDocument: 'after',
     runValidators: true,
   });
 

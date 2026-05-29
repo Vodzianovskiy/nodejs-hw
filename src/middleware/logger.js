@@ -1,7 +1,3 @@
-// src/middleware/logger.js
-const logger = (req, res, next) => {
-  console.log(`Time: ${new Date().toLocaleString()}`);
-  next();
-};
+import pino from 'pino-http';
 
-export default logger;
+export const logger = pino();
