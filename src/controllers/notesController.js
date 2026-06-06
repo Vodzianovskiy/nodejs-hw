@@ -1,6 +1,6 @@
 // src/controllers/notesController.js
 import createHttpError from 'http-errors';
-import { Note } from '../models/Note.js';
+import { Note } from '../models/note.js';
 
 export const getAllNotes = async (req, res) => {
   const { tag, search, page = 1, perPage = 10 } = req.query;
