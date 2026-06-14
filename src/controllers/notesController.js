@@ -49,10 +49,7 @@ export const getNoteById = async (req, res, next) => {
     throw createHttpError(404, 'Note not found');
   }
 
-  res.status(200).json({
-    message: 'Retrieved note by ID',
-    data: note,
-  });
+  res.status(200).json(note);
 };
 
 export const createNote = async (req, res) => {
@@ -61,10 +58,7 @@ export const createNote = async (req, res) => {
     userId: req.user._id,
   });
 
-  res.status(201).json({
-    message: 'Note created successfully',
-    data: note,
-  });
+  res.status(201).json(note);
 };
 
 export const deleteNote = async (req, res, next) => {
@@ -77,10 +71,7 @@ export const deleteNote = async (req, res, next) => {
     throw createHttpError(404, 'Note not found');
   }
 
-  res.status(200).json({
-    message: 'Note deleted successfully',
-    data: note,
-  });
+  res.status(200).json(note);
 };
 
 export const updateNote = async (req, res, next) => {
@@ -96,8 +87,5 @@ export const updateNote = async (req, res, next) => {
     throw createHttpError(404, 'Note not found');
   }
 
-  res.status(200).json({
-    message: 'Note updated successfully',
-    data: note,
-  });
+  res.status(200).json(note);
 };
