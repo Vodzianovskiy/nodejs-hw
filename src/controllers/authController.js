@@ -159,13 +159,16 @@ export const requestResetEmail = async (req, res, next) => {
       link: `${process.env.FRONTEND_DOMAIN}/reset-password?token=${token}`,
     });
 
+    console.log('Sending email to:', user.email);
     try {
       await sendMail({
         to: user.email,
         subject: 'Password Reset Request',
         html,
       });
-    } catch {
+      console.log('Email sent successfully');
+    } catch (error) {
+      console.error('SendMail error in controller:', error);
       throw createHttpError(
         500,
         'Failed to send the email, please try again later.'

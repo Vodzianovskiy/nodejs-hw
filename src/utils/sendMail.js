@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT),
+  secure: false,
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASSWORD,
@@ -10,12 +11,22 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendMail = async ({ to, subject, html }) => {
-  const mailOptions = {
-    from: process.env.SMTP_FROM,
-    to,
-    subject,
-    html,
-  };
+  try {
+    console.log('Verifying SMTP connection...');
+    await transporter.verify();
+    console.log('SMTP connection verified successfully');
 
-  return transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail({
+      from: `"Nodejs HW" <${process.env.SMTP_FROM}>`,
+      to,
+      subject,
+      html,
+    });
+
+    console.log('MAIL_INFO:', info);
+    return info;
+  } catch (error) {
+    console.error('SendMail error:', error);
+    throw error;
+  }
 };
