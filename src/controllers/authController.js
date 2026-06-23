@@ -129,6 +129,7 @@ export const logoutUser = async (req, res, next) => {
 };
 
 export const requestResetEmail = async (req, res, next) => {
+  console.log('requestResetEmail called');
   try {
     const { email } = req.body;
 
@@ -180,6 +181,7 @@ export const requestResetEmail = async (req, res, next) => {
       message: 'Password reset email sent successfully',
     });
   } catch (error) {
+    console.error('requestResetEmail error:', error);
     next(error);
   }
 };
