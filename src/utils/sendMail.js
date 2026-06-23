@@ -25,13 +25,3 @@ export const sendEmail = async (options) => {
     throw error;
   }
 };
-</write_to_file>
-<task_progress>
-- [x] Исправить resetPasswordSchema (password min: 8)
-- [x] Исправить sendMail.js (переименовать в sendEmail, сигнатура options)
-- [ ] Исправить authController.js (импорт sendEmail, явный from)
-- [ ] Исправить saveFileToCloudinary.js (resource_type, unique_filename)
-- [ ] Исправить userController.js (returnDocument: 'after')
-- [ ] Commit + push
-</task_progress>
-</write_to_file>
