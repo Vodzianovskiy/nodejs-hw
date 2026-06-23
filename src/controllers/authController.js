@@ -151,7 +151,7 @@ export const requestResetEmail = async (req, res, next) => {
       __dirname,
       '..',
       'templates',
-      'reste-password-email.html'
+      'reset-password-email.html'
     );
     const templateSource = fs.readFileSync(templatePath, 'utf-8');
     const template = handlebars.compile(templateSource);
