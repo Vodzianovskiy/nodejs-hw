@@ -48,6 +48,7 @@ export const registerUser = async (req, res, next) => {
 
     res.status(201).json(user);
   } catch (error) {
+    console.error('Register error:', error);
     next(error);
   }
 };
