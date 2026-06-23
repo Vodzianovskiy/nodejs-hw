@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import { User } from '../models/user.js';
 import { Session } from '../models/session.js';
 import { createSession, setSessionCookies } from '../services/auth.js';
-import { sendMail } from '../utils/sendMail.js';
+import { sendEmail } from '../utils/sendMail.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -163,7 +163,8 @@ export const requestResetEmail = async (req, res, next) => {
 
     console.log('Sending email to:', user.email);
     try {
-      await sendMail({
+      await sendEmail({
+        from: process.env.SMTP_FROM,
         to: user.email,
         subject: 'Password Reset Request',
         html,
